@@ -1,9 +1,14 @@
-# 西南交通大学学位论文 LaTeX 模板
+# 西南交通大学学位论文 LaTeX 模板（本科）
 
-[![Travis build](https://travis-ci.org/swjtutug/swjtuthesis.svg?branch=master)](https://travis-ci.org/swjtutug/swjtuthesis)
-[![GitHub release](https://img.shields.io/github/release/swjtutug/swjtuthesis/all.svg)](https://github.com/swjtutug/swjtuthesis/releases/latest)
-[![Github downloads](https://img.shields.io/github/downloads/swjtutug/swjtuthesis/total.svg)](https://github.com/swjtutug/swjtuthesis/releases)
-[![GitHub commits](https://img.shields.io/github/commits-since/swjtutug/swjtuthesis/v1.1.svg)](https://github.com/swjtutug/swjtuthesis/commits/master)
+[![Travis build](https://travis-ci.org/L-Trump/swjtuthesis-bachelor.svg?branch=master)](https://travis-ci.org/L-Trump/swjtuthesis-bachelor)
+[![GitHub release](https://img.shields.io/github/release/L-Trump/swjtuthesis-bachelor/all.svg)](https://github.com/L-Trump/swjtuthesis-bachelor/releases/latest)
+[![Github downloads](https://img.shields.io/github/downloads/L-Trump/swjtuthesis-bachelor/total.svg)](https://github.com/L-Trump/swjtuthesis-bachelor/releases)
+[![GitHub commits](https://img.shields.io/github/commits-since/L-Trump/swjtuthesis-bachelor/v1.1.svg)](https://github.com/L-Trump/swjtuthesis-bachelor/commits/master)
+
+## 本项目由西南交通大学学位论文 LaTeX 模板 [swjtuthesis](https://github.com/swjtutug/swjtuthesis) 修改而来，适应了最新的「西南交通大学本科毕业设计(论文)撰写规范」
+
+## 最新版文档请查看当前项目中的swjtuthesis.pdf或自行编译宏包文档，以下为原项目README
+
 
 本项目是西南交通大学的学位论文 LaTeX 模板 swjtuthesis，按照
 《[西南交通大学研究生学位论文撰写规范](http://gs.swjtu.edu.cn/ws/gs/dd/25)》

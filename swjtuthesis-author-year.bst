@@ -6,7 +6,8 @@
 %%
 %% swjtuthesis.dtx  (with options: `authoryear')
 %% 
-%% Copyright (C) 2018-2019 by GeosciMan <geosciman@163.com>
+%% Copyright (C) 2018-2020 by GeosciMan <geosciman@163.com>
+%% Copyright (C) 2022-2022 by L-Trump <ltrump@163.com>
 %% 
 %% This file may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either

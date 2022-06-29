@@ -6,7 +6,8 @@
 %%
 %% swjtuthesis.dtx  (with options: `class')
 %% 
-%% Copyright (C) 2018-2019 by GeosciMan <geosciman@163.com>
+%% Copyright (C) 2018-2020 by GeosciMan <geosciman@163.com>
+%% Copyright (C) 2022-2022 by L-Trump <ltrump@163.com>
 %% 
 %% This file may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either
@@ -20,7 +21,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{swjtuthesis}
-    [2018/03/28 v1.1 SWJTU thesis template]
+    [2022/06/28 v1.3 SWJTU thesis template]
 \newif\if@swjtu@doctor
 \newif\if@swjtu@master
 \newif\if@swjtu@bachelor
@@ -126,7 +127,7 @@
 \swjtu@define@term{ensupervisor}
 \swjtu@define@term{encosupervisor}
 \swjtu@define@term{endate}
-\date{\zhnumsetup{time=Chinese}\zhtoday}
+\date{\number\year 年 \number\month 月}
 \endate{\CTEX@todayold}
 \if@swjtu@english
   \renewcommand\figurename{Fig.}
@@ -160,17 +161,17 @@
 \RequirePackage{geometry}
 \geometry{
     paper=a4paper,
-    top=2.54cm, bottom=2.54cm,
-    left=3.17cm, right=3.17cm,
-    headheight=0.75cm, headsep=0.29cm,
+    top=2.6cm, bottom=2.6cm,
+    left=2.7cm, right=2.7cm,
+    headheight=0.75cm, headsep=0.35cm, % headsep=0.29cm,
     footskip=0.79cm}
 \RequirePackage{fancyhdr}
-\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrulewidth}{0.06cm}
 \if@swjtu@bachelor
   \fancypagestyle{swjtu@headings}{%
     \fancyhf{}%
-    \fancyhead[C]{\setfontsize{9\bp@}西南交通大学本科毕业论文}%
-    \fancyfoot[C]{\setfontsize{9\bp@}\thepage}}%
+    \fancyhead[C]{\heiti\mdseries\zihao{-4}西南交通大学本科毕业论文（论文）\vspace{0.01cm}}%
+    \fancyfoot[C]{\heiti\mdseries\zihao{-4}第\thepage 页}}%
 \else
   \fancypagestyle{swjtu@headings}{%
     \fancyhf{}%
@@ -184,13 +185,14 @@
   \hbox{}\thispagestyle{empty}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
 \g@addto@macro\frontmatter{%
   \if@swjtu@bachelor
-    \pagenumbering{gobble}%
+    \pagenumbering{Roman}%
   \else
     \pagenumbering{Roman}%
   \fi}
 \renewcommand\mainmatter{%
   \if@swjtu@bachelor
-    \clearpage
+    \cleardoublepage%\clearpage
+    \pagenumbering{arabic}
   \else
     \cleardoublepage
     \pagenumbering{arabic}%
@@ -202,10 +204,12 @@
     \global\@topnum\z@
     \@afterindenttrue
     \if@swjtu@bachelor
+      \iffalse
       \if@mainmatter
-        \ctexset{chapter/format = \centering\sffamily\setfontsize{16\bp@}}
+        \ctexset{chapter/format = \centering\sffamily\zihao{-2}}
       \else
-        \ctexset{chapter/format = \centering\sffamily\setfontsize{18\bp@}}
+        \ctexset{chapter/format = \centering\sffamily\zihao{-2}}
+      \fi
       \fi
       \if@swjtu@addtocspace
         \addtocontents{toc}{\protect\addvspace{12\bp@}}%
@@ -223,7 +227,7 @@
 \RequirePackage{xstring}
 \newcommand\spacetitle[1]{%
   \StrLen{#1}[\titlelength]%
-  \if@swjtu@bachelor
+  \iffalse %@swjtu@bachelor
     \if@mainmatter\relax\else
       \ifnum\titlelength=2\ziju{1}\else
         \ifnum\titlelength=4\ziju{0.5}%
@@ -238,10 +242,11 @@
       \fi
     \fi
   \fi#1}
+\newcommand\mainchapterformat{
 \setcounter{secnumdepth}{5}
 \ctexset{
     chapter = {
-        format      = \centering\sffamily\bfseries\setfontsize{16\bp@},
+        format      = \centering\sffamily\zihao{-2},%\sffamily\bfseries\setfontsize{16\bp@},
         nameformat  = {},
         titleformat = \spacetitle,
         number      = \thechapter,
@@ -251,23 +256,24 @@
         % fixskip   = true, % will be used in future version
     },
     section = {
-        format     = \sffamily\setfontsize{14\bp@},
-        aftername  = \hspace{\ccwd},
+        format     = \sffamily\zihao{-3}, %sffamily\setfontsize{14\bp@},
+        aftername  = \hspace{.5\ccwd},
+        number = {\arabic{chapter}.\arabic{section}},
         beforeskip = 24\bp@,
         afterskip  = 6\bp@,
     },
     subsection = {
-        format     = \sffamily\setfontsize{13\bp@},
-        aftername  = .\hspace{\ccwd},
-        indent     = 2\ccwd,
+        format     = \sffamily\zihao{4}, %\sffamily\setfontsize{13\bp@},
+        aftername  = \hspace{.5\ccwd},
+        %indent     = 2\ccwd,
         beforeskip = 12\bp@,
         afterskip  = 6\bp@,
     },
     subsubsection = {
-        format     = \sffamily\setfontsize{12\bp@},
-        number     = \arabic{subsubsection},
-        aftername  = .\hspace{\ccwd},
-        indent     = 3\ccwd,
+        format     = \sffamily\zihao{-4}, %\sffamily\setfontsize{12\bp@},
+        %number     = \arabic{subsubsection},
+        aftername  = \hspace{.5\ccwd},
+        %indent     = 3\ccwd,
         beforeskip = 12\bp@,
         afterskip  = 6\bp@,
     },
@@ -275,7 +281,7 @@
         format     = \sffamily\setfontsize{12\bp@},
         number     = (\arabic{paragraph}),
         aftername  = \hspace{\ccwd},
-        indent     = 3\ccwd,
+        indent     = 2\ccwd,
         beforeskip = \z@,
         afterskip  = \z@,
         runin      = false,
@@ -290,22 +296,24 @@
         runin      = false,
     },
 }
-\if@swjtu@bachelor
+}
+\mainchapterformat
+\iffalse%@swjtu@bachelor
     \setcounter{secnumdepth}{4}
     \ctexset{
         chapter={
-            format = \centering\sffamily\setfontsize{16\bp@},
-            number = \chinese{chapter},
+            format = \centering\heiti\zihao{-2},
+            number = \arabic{chapter},
         },
         section = {
-            format = \centering\sffamily\setfontsize{15\bp@},
+            format = \heiti\zihao{-3},
             name   = {第,节},
             number = \chinese{section},
         },
         subsection = {
-            format    = \sffamily\setfontsize{14\bp@},
-            number    = \chinese{subsection},
-            aftername = {、},
+            format    = \heiti\setfontsize{14\bp@},
+            number    = \arabic{subsection},
+            aftername = {\ },
         },
         subsubsection = {
             format    = {\rmfamily\setfontsize{12\bp@}},
@@ -340,22 +348,20 @@
   }%
   \chapter*{#2}}
 \renewcommand\maketitle{%
+    \iffalse
     \newgeometry{
         top=3.8cm, bottom=3.8cm,
         left=3.2cm, right=3.2cm,
         headheight=0cm, headsep=0.8cm,
         footskip=0.8cm}
     \pagenumbering{gobble}
+    \fi
     \pdfbookmark[0]{封面}{titlepage}
     \make@cntitle \cleardoublepage
-    \pdfbookmark[0]{Title page}{entitlepage}
-    \restoregeometry
-    \if@swjtu@bachelor\relax\else
         \if@swjtu@pdf\relax\else%
             \pdfbookmark[0]{原创性声明}{statement}
             \make@statement \cleardoublepage
         \fi
-    \fi
 }
 \if@swjtu@doctor
   \if@swjtu@professional
@@ -373,7 +379,7 @@
     \fi
     \newcommand\swjtu@enthesisname{A dissertation for master's degree}
   \else
-    \newcommand\swjtu@thesisname{学士学位论文}
+    \newcommand\swjtu@thesisname{西\ 南\ 交\ 通\ 大\ 学\\本科毕业设计（论文）}
     \newcommand\swjtu@enthesisname{A dissertation for bachelor's degree}
   \fi
 \fi
@@ -390,6 +396,8 @@
             {\parbox{\textwidth}{\centering#2}};}
 \newcommand\make@cntitle{%
     \begin{titlepage}%
+        \if@swjtu@bachelor
+        \else
         \tikz[remember picture,overlay]%
             \node [yshift=-4cm] at (current page.north) [below,align=flush center]%
                 {\parbox{\textwidth}{\raggedright\fangsong\setfontsize{14\bp@}\swjtu@classifiedindex}};%
@@ -397,25 +405,26 @@
         \tikz[remember picture,overlay]%
             \node [yshift=-5cm] at (current page.north) [below,align=flush center]%
                 {\parbox{\textwidth}{\raggedright\fangsong\setfontsize{14\bp@}\swjtu@UDC}};%
+        \fi
         \if@swjtu@professional
           \vpostext{6.3cm}{\sffamily\setfontsize{28\bp@}\ziju{-0.09}\swjtu@thesisname}%
           \vpostext{9cm}{\setfontsize{26\bp@}\swjtu@professionaltype}%
           \vpostext{16.3cm}{\sffamily\bfseries\setfontsize{30\bp@}\swjtu@title}%
         \else
-          \vpostext{6.3cm}{\sffamily\setfontsize{28\bp@}\swjtu@thesisname}%
-          \vpostext{9.0cm}{\sffamily\bfseries\setfontsize{30\bp@}\swjtu@title}%
+          \vpostext{4.3cm}{\centering\sffamily\zihao{-2}\swjtu@thesisname}%
+          \vpostext{9.0cm}{\sffamily\mdseries\zihao{2}\swjtu@title}%
         \fi
         \tikz[remember picture,overlay]%
-            \node [yshift=-20cm] at (current page.north)%
+            \node [yshift=-15cm] at (current page.north)%
             [below,align=flush center] {%
-                \setfontsize{16\bp@}%
-                \begin{tabular}{@{}l@{\hspace{\ccwd}}l@{}}%
-                    \textsf{年\hspace{4em}级}    & \swjtu@grade \\%
-                    \textsf{姓\hspace{4em}名} & \swjtu@author \\%
-                    \textsf{专\hspace{4em}业} & \swjtu@major \\%
-                    \textsf{指\hspace{0.6em}导\hspace{0.6em}教\hspace{0.6em}师} & \swjtu@supervisor\quad\swjtu@cosupervisor \\%
+                \zihao{-4}
+                \begin{tabular}{@{\hspace{1em}}l@{\hspace{\ccwd}}l@{}}%
+                    \textsf{年\hspace{3\ccwd}级}    & \swjtu@grade \\%
+                    \textsf{姓\hspace{3\ccwd}名} & \swjtu@author \\%
+                    \textsf{专\hspace{3\ccwd}业} & \swjtu@major \\%
+                    \textsf{指\hspace{0.33em}导\hspace{0.33em}教\hspace{0.33em}师} & \swjtu@supervisor\quad\swjtu@cosupervisor \\%
                 \end{tabular}};%
-          \vpostext{26cm}{\setfontsize{16\bp@}[30\bp@]\swjtu@date}%
+          \vpostext{24.5cm}{\rmfamily\swjtu@date}%
     \end{titlepage}}
 \newcommand\make@entitle{%
     \begin{titlepage}%
@@ -445,11 +454,25 @@
              \vpostext{26cm}{\setfontsize{16\bp@}[30\bp@]\swjtu@endate}%
     \end{titlepage}}
 \newcommand{\swjtu@declaretext} {
+\if@swjtu@bachelor
+本人郑重声明：所呈交的毕业设计（论文），是本人在导师的指导下，
+独立进行研究工作所取得的成果。除文中已经注明引用的内容外，本
+论文不包含任何其他个人或集体已经发表或撰写过的作品成果。对本
+文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。
+本人完全意识到本声明的法律结果由本人承担。
+\else
 本人声明所呈交的学位论文，是本人在导师指导下进行研究工作所取得的成果。
 除已特别加以标注和致谢的地方外，论文中不包含任何他人已经发表或撰写过
 的研究成果。与我一同工作的同志对本研究所做的贡献均已在论文中作了明确的说明。
+\fi
 }
 \newcommand{\swjtu@authorization}{
+\if@swjtu@bachelor
+本毕业设计（论文）作者同意学校保留并向国家有关部门或机构送交论文的
+复印件和电子版，允许论文被查阅和借阅。本人授权西南交通大学可以将本
+毕业设计（论文）的全部或部分内容编入有关数据库进行检索，可以采用影
+印、缩印或扫描等复制手段保存和汇编本毕业设计（论文）。
+\else
 作为申请学位的条件之一，学位论文著作权拥有者授权西南交通大学拥有
 学位论文的部分使用权，即：学校有权按有关规定向国家有关部门或机构送交
 论文的复印件和电子版，允许论文被查阅和借阅，可以将学位论文编入《中国
@@ -458,7 +481,59 @@
 相一致。
 
 保密的学位论文在解密后也遵守此规定。
+\fi
 }
+\RequirePackage{multirow}
+\RequirePackage{setspace}
+\if@swjtu@bachelor
+\newcommand\make@statement{
+    \thispagestyle{empty}
+    \zihao{4}
+    \vspace*{-0.15cm}
+    \begin{spacing}{1.5}
+      \centering
+      {\zihao{-2}\sffamily\textbf{西南交通大学\\本科毕业设计（论文）学术诚信声明}}
+    \end{spacing}
+    \vskip 0.4cm
+
+    \begin{spacing}{2}\zihao{4}\swjtu@declaretext\end{spacing} \par
+
+    \vskip 2.7cm
+    {\noindent\raggedleft
+    \renewcommand{\arraystretch}{2.0}
+    \begin{tabular}{p{7cm}}
+      作者签名：\swjtu@underline[7.4em]{} \\ 签字日期：\swjtu@underline[7.4em]{}
+    \end{tabular}\par
+    }\clearpage
+
+    \thispagestyle{empty}
+    \zihao{4}
+    \vspace*{-0.15cm}
+    \begin{spacing}{1.5}
+      \centering
+      {\zihao{-2}\sffamily\textbf{西南交通大学\\本科毕业设计（论文）版权使
+      用授权书}}
+    \end{spacing}\par
+    \vskip 0.3cm
+
+    \begin{spacing}{2}\zihao{4}\swjtu@authorization\end{spacing} \par
+
+    {\renewcommand{\arraystretch}{2.0}
+    \begin{tabular}{@{}cl}
+        \multirow{2}{*}{本论文属于} & \textbf{保密} $\square$，在\swjtu@underline[2em]{}年后解密适用本授权书。\\
+        ~ & \textbf{不保密} $\square$。\\
+    \end{tabular}
+    }\par
+
+    \vskip 2.6cm
+
+    {\renewcommand{\arraystretch}{2.0}
+    \begin{tabular}{p{7cm}p{7cm}}
+      作者签名：\swjtu@underline[7.4em]{} & 导师签名：\swjtu@underline[7.4em]{} \\
+      签字日期：\swjtu@underline[7.4em]{} & 签字日期：\swjtu@underline[7.4em]{} \\
+    \end{tabular}}
+}
+\else
 \newcommand\make@statement{
     \thispagestyle{empty}
     \setfontsize{12\bp@}[20\bp@]
@@ -493,28 +568,33 @@
       签字日期：\swjtu@underline[7.4em]{} & 签字日期：\swjtu@underline[7.4em]{} \\
     \end{tabular}}
 }
+\fi
 \newenvironment{abstract}{%
     \if@swjtu@bachelor
-        \chapter{中文内容摘要}%
+        \chapter{摘要}%
     \else
         \swjtu@chapter{摘要}%
     \fi
+    \zihao{-4}
   }{}
 \newenvironment{enabstract}{%
     \if@swjtu@bachelor
         \chapter[英文内容摘要]{Abstract}
     \else
         \swjtu@chapter[Abstract]{ABSTRACT}
-    \fi}{}
+    \fi
+    \zihao{-4}
+    }{}
 \newcommand\keywords[1]{%
   \par\phantom{empty line}\par\noindent\hangindent=4\ccwd\relax%
-  \textbf{关键词}：#1}
+  {\zihao{-4}\textsf{关键词：#1}}}
 \newcommand\enkeywords[1]{%
   \par\phantom{empty}\par\noindent\hangindent=5.3em\relax%
-  \textbf{Key Words}: #1}
+  {\zihao{-4}\textsf{Key Words: #1}}}
 \renewcommand\tableofcontents{%
-    \cleardoublepage%
-    \if@swjtu@bachelor\pagenumbering{arabic}\fi
+    %\cleardoublepage%
+    \clearpage
+    %\if@swjtu@bachelor\pagenumbering{arabic}\fi
     \swjtu@chapter{\contentsname}%
     \@starttoc{toc}}
 \RequirePackage{titletoc}
@@ -522,18 +602,18 @@
 \if@swjtu@bachelor
     \titlecontents{chapter}
         [\z@]
-        {\setfontsize{12\bp@}[20\bp@]}
+        {\setfontsize{12\bp@}[20\bp@]\sffamily}
         {\contentspush{\thecontentslabel\hskip\ccwd\relax}}
-        {}{\swjtu@leaders\contentspage}
+        {}{\swjtu@leaders\rmfamily\contentspage}
     \titlecontents{section}
         [\ccwd]
-        {\setfontsize{12\bp@}[20\bp@]}
+        {\setfontsize{12\bp@}[20\bp@]\rmfamily}
         {\contentspush{\thecontentslabel\hskip\ccwd\relax}}
         {}{\swjtu@leaders\contentspage}
     \titlecontents{subsection}
         [2\ccwd]
-        {\setfontsize{12\bp@}[20\bp@]}
-        {\contentspush{\thecontentslabel、}}
+        {\setfontsize{12\bp@}[20\bp@]\rmfamily}
+        {\contentspush{\thecontentslabel\hskip\ccwd\relax}}
         {}{\swjtu@leaders\contentspage}
 \else
     \titlecontents{chapter}

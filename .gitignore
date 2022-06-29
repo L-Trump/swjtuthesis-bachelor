@@ -1,4 +1,4 @@
-swjtuthesis.pdf
+# swjtuthesis.pdf
 main.pdf
 *.hd
 
@@ -176,6 +176,9 @@ sympy-plots-for-*.tex/
 # pythontex
 *.pytxcode
 pythontex-files-*/
+
+# vscode
+.vscode/
 
 # thmtools
 *.loe

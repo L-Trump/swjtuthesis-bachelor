@@ -1,12 +1,12 @@
 %!TEX encoding = UTF-8 Unicode
 %!TEX program = xelatex
 
-\documentclass[doctor]{swjtuthesis}
+\documentclass[bachelor]{swjtuthesis}
 % bachelor|master|doctor [professional] [english] [pdf] [authoryear|numebers]
-\usepackage{swjtuextra}
+\usepackage{swjtuextra, array, ulem}
 \graphicspath{{figures/}}
 
-\title{西南交通大学\\学位论文模板示例文档}
+\title{学位论文模板示例文档\\ \uppercase{Thesis template}}
 \grade{2018级}
 \classifiedindex{国内图书分类号: XXX}
 \UDC{国际图书分类号: XXX}
@@ -50,6 +50,7 @@
 %   backmatter: 致谢、发表论文
 
 \frontmatter
+\input{data/taskbook}
 \input{data/abstract}
 \tableofcontents
 \listoffigures
